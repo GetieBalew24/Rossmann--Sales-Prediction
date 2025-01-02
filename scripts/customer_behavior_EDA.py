@@ -83,4 +83,26 @@ class CustomerBehaviorAnalyzer:
         ax[1].set_title('Promo Distribution - Test Set')
         
         plt.show()
-    
+    def add_holiday_columns(self, df):
+        """
+        Adds a column 'IsHoliday' to indicate if the date is a holiday.
+        Parameters:
+        - df: Pandas DataFrame with a 'Date' column in datetime format.
+        Returns:
+        - df: DataFrame with an additional 'IsHoliday' column (1 if it's a holiday, 0 otherwise)
+        """
+        logging.info("Adding holiday columns...")
+        # Ensure 'Date' column is in datetime format
+        if not pd.api.types.is_datetime64_any_dtype(df['Date']):
+            df['Date'] = pd.to_datetime(df['Date'])
+
+        # Get unique years from the 'Date' column
+        years = df['Date'].dt.year.unique()
+
+        # Define ET holidays for the years present in the dataset for Ethiopia
+        etiopian_holidays = holidays.ET(years=years)
+
+        # Add 'IsHoliday' column based on whether the date is in the holiday list
+        df['IsHoliday'] = df['Date'].isin(etiopian_holidays).astype(int)
+
+        return df
