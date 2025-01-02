@@ -106,3 +106,57 @@ class CustomerBehaviorAnalyzer:
         df['IsHoliday'] = df['Date'].isin(etiopian_holidays).astype(int)
 
         return df
+    def plot_sales_holiday_behavior(self, df):
+        """
+        Plots the average sales before holidays, during holidays, and after holidays.
+
+        Parameters:
+        - df: DataFrame with 'StateHoliday' (binary) and 'Sales' columns
+        """
+        logging.info("Plotting sales effects due to holidays...")
+        # plot sales before, during, and after holidays
+        plt.figure(figsize=(12, 6))
+        sns.histplot(data=df['IsHoliday'])
+        plt.title('Sales on Holidays and non-Holidays')
+        plt.show()
+    # Correlation analysis and scatter plot
+    def plot_holiday_effects(self, df):
+        """
+        Adds a 'HolidayStatus' column to indicate before, during, and after holidays,
+        and plots the average sales behavior for each period.
+        
+        Parameters:
+        - df: DataFrame with 'Date', 'StateHoliday', and 'Sales' columns.
+        
+        Returns:
+        None 
+        """
+        logging.info("Plotting holiday effects...")
+        # Ensure 'Date' is in datetime format
+        df['Date'] = pd.to_datetime(df['Date'])
+        
+        # Default to 'Regular Day'
+        df['HolidayStatus'] = 'Regular Day'
+        
+        # Assign 'During Holiday' where StateHoliday is not 0 (assuming 0 = no holiday)
+        df.loc[df['StateHoliday'] != '0', 'HolidayStatus'] = 'During Holiday'
+        
+        # Assign 'Before Holiday' using shift() to identify the day before a holiday
+        df['IsNextDayHoliday'] = df['StateHoliday'].shift(-1).fillna('0')
+        df.loc[df['IsNextDayHoliday'] != '0', 'HolidayStatus'] = 'Before Holiday'
+        
+        # Assign 'After Holiday' using shift() to identify the day after a holiday
+        df['IsPrevDayHoliday'] = df['StateHoliday'].shift(1).fillna('0')
+        df.loc[df['IsPrevDayHoliday'] != '0', 'HolidayStatus'] = 'After Holiday'
+        
+        # Group by 'HolidayStatus' and calculate average sales
+        sales_by_period = df.groupby('HolidayStatus')['Sales'].mean().reset_index()
+
+        # Plotting the sales behavior before, during, and after holidays
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x='HolidayStatus', y='Sales', data=sales_by_period, palette='Set2')
+        plt.title('Average Sales Before, During, and After Holidays')
+        plt.ylabel('Average Sales')
+        plt.xlabel('Holiday Period')
+        plt.show()
+  
