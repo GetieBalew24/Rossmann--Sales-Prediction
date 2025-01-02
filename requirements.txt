@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+seaborn
+logging
+scipy
+tensorflow
+statsmodels
+scikit-learn
+uvicorn
+fastapi
+pandas
+joblib
