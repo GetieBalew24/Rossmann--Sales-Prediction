@@ -1,0 +1,188 @@
+2025-01-03 21:15:19,139 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:15:19,358 - INFO - Adding date features.
+2025-01-03 21:15:20,013 - INFO - Handling missing data
+2025-01-03 21:15:20,232 - INFO - Missing values per column:
+Store                        0.000000
+DayOfWeek                    0.000000
+Date                         0.000000
+Sales                        0.000000
+Customers                    0.000000
+Open                         0.000000
+Promo                        0.000000
+SchoolHoliday                0.000000
+StoreType                    0.000000
+Assortment                   0.000000
+CompetitionDistance          0.002597
+CompetitionOpenSinceMonth    0.317878
+CompetitionOpenSinceYear     0.317878
+Promo2                       0.000000
+Promo2SinceWeek              0.499436
+Promo2SinceYear              0.499436
+PromoInterval                0.499436
+Weekday                      0.000000
+IsWeekend                    0.000000
+Day                          0.000000
+Month                        0.000000
+Year                         0.000000
+IsHoliday                    0.000000
+dtype: float64
+2025-01-03 21:15:20,233 - INFO - Columns to drop (missing fraction > 0.49): ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:15:20,282 - INFO - Columns dropped: ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:15:21,246 - INFO - Missing values per column:
+Id                           0.000000
+Store                        0.000000
+DayOfWeek                    0.000000
+Date                         0.000000
+Open                         0.000268
+Promo                        0.000000
+SchoolHoliday                0.000000
+StoreType                    0.000000
+Assortment                   0.000000
+CompetitionDistance          0.002336
+CompetitionOpenSinceMonth    0.370327
+CompetitionOpenSinceYear     0.370327
+Promo2                       0.000000
+Promo2SinceWeek              0.419393
+Promo2SinceYear              0.419393
+PromoInterval                0.419393
+Weekday                      0.000000
+IsWeekend                    0.000000
+Day                          0.000000
+Month                        0.000000
+Year                         0.000000
+IsHoliday                    0.000000
+dtype: float64
+2025-01-03 21:15:21,246 - INFO - Columns to drop (missing fraction > 0.49): []
+2025-01-03 21:15:21,246 - INFO - No columns dropped due to missing values exceeding threshold.
+2025-01-03 21:15:21,276 - INFO - Encoding categorical values using onehot method.
+2025-01-03 21:15:21,529 - INFO - Detecting and handling outliers.
+2025-01-03 21:15:50,765 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:15:50,765 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:15:50,766 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:15:51,103 - INFO - Adding date features.
+2025-01-03 21:16:16,943 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:16:17,197 - INFO - Adding date features.
+2025-01-03 21:16:17,897 - INFO - Handling missing data
+2025-01-03 21:16:18,088 - INFO - Missing values per column:
+Store                        0.000000
+DayOfWeek                    0.000000
+Date                         0.000000
+Sales                        0.000000
+Customers                    0.000000
+Open                         0.000000
+Promo                        0.000000
+SchoolHoliday                0.000000
+StoreType                    0.000000
+Assortment                   0.000000
+CompetitionDistance          0.002597
+CompetitionOpenSinceMonth    0.317878
+CompetitionOpenSinceYear     0.317878
+Promo2                       0.000000
+Promo2SinceWeek              0.499436
+Promo2SinceYear              0.499436
+PromoInterval                0.499436
+Weekday                      0.000000
+IsWeekend                    0.000000
+Day                          0.000000
+Month                        0.000000
+Year                         0.000000
+IsHoliday                    0.000000
+dtype: float64
+2025-01-03 21:16:18,088 - INFO - Columns to drop (missing fraction > 0.49): ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:16:18,137 - INFO - Columns dropped: ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:16:19,105 - INFO - Missing values per column:
+Id                           0.000000
+Store                        0.000000
+DayOfWeek                    0.000000
+Date                         0.000000
+Open                         0.000268
+Promo                        0.000000
+SchoolHoliday                0.000000
+StoreType                    0.000000
+Assortment                   0.000000
+CompetitionDistance          0.002336
+CompetitionOpenSinceMonth    0.370327
+CompetitionOpenSinceYear     0.370327
+Promo2                       0.000000
+Promo2SinceWeek              0.419393
+Promo2SinceYear              0.419393
+PromoInterval                0.419393
+Weekday                      0.000000
+IsWeekend                    0.000000
+Day                          0.000000
+Month                        0.000000
+Year                         0.000000
+IsHoliday                    0.000000
+dtype: float64
+2025-01-03 21:16:19,106 - INFO - Columns to drop (missing fraction > 0.49): []
+2025-01-03 21:16:19,106 - INFO - No columns dropped due to missing values exceeding threshold.
+2025-01-03 21:16:19,144 - INFO - Encoding categorical values using onehot method.
+2025-01-03 21:16:19,743 - INFO - Detecting and handling outliers.
+2025-01-03 21:16:21,049 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:16:21,049 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:16:21,050 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:16:21,517 - INFO - Adding date features.
+2025-01-03 21:16:34,405 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:16:34,405 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:16:34,405 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:16:35,089 - INFO - Adding date features.
+2025-01-03 21:18:22,902 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:18:22,902 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:18:22,902 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:21:37,942 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:21:38,089 - INFO - Adding date features.
+2025-01-03 21:21:38,560 - INFO - Handling missing data
+2025-01-03 21:21:38,602 - INFO - Missing values per column:
+Store              0.000000
+DayOfWeek          0.000000
+Date               0.000000
+Sales              0.000000
+Customers          0.000000
+Open               0.000000
+Promo              0.000000
+SchoolHoliday      0.000000
+Promo2SinceWeek    0.499436
+Promo2SinceYear    0.499436
+PromoInterval      0.499436
+Weekday            0.000000
+IsWeekend          0.000000
+Day                0.000000
+Month              0.000000
+Year               0.000000
+IsHoliday          0.000000
+dtype: float64
+2025-01-03 21:21:38,602 - INFO - Columns to drop (missing fraction > 0.49): ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:21:38,631 - INFO - Columns dropped: ['Promo2SinceWeek', 'Promo2SinceYear', 'PromoInterval']
+2025-01-03 21:21:39,040 - INFO - Missing values per column:
+Id                 0.000000
+Store              0.000000
+DayOfWeek          0.000000
+Date               0.000000
+Open               0.000268
+Promo              0.000000
+SchoolHoliday      0.000000
+Promo2SinceWeek    0.419393
+Promo2SinceYear    0.419393
+PromoInterval      0.419393
+Weekday            0.000000
+IsWeekend          0.000000
+Day                0.000000
+Month              0.000000
+Year               0.000000
+IsHoliday          0.000000
+dtype: float64
+2025-01-03 21:21:39,041 - INFO - Columns to drop (missing fraction > 0.49): []
+2025-01-03 21:21:39,041 - INFO - No columns dropped due to missing values exceeding threshold.
+2025-01-03 21:21:39,088 - INFO - Encoding categorical values using onehot method.
+2025-01-03 21:21:39,400 - INFO - Detecting and handling outliers.
+2025-01-03 21:21:39,798 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:21:39,799 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:21:39,799 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:21:39,965 - INFO - Adding date features.
+2025-01-03 21:22:57,938 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:22:57,938 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:22:57,938 - INFO - Merging store data with train and test datasets.
+2025-01-03 21:22:58,163 - INFO - Adding date features.
+2025-01-03 21:25:51,009 - INFO - Running the complete preprocessing pipeline.
+2025-01-03 21:25:51,010 - INFO - Running preprocessing on both train and test datasets.
+2025-01-03 21:25:51,010 - INFO - Merging store data with train and test datasets.
