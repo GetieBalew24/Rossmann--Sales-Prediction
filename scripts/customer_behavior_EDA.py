@@ -213,4 +213,65 @@ class CustomerBehaviorAnalyzer:
         sns.boxplot(x='Promo', y='Sales', data=df)
         plt.title('Sales with and without Promotions')
         plt.show()
-    
+     # Function to analyze and plot the effect of state holidays on sales
+    def plot_sales_by_state_holiday(self, df):
+        """
+        Plots the effect of state holidays on sales, with labeled holiday categories.
+        - df: DataFrame containing sales and StateHoliday columns.
+        Returns:
+        None
+        """
+        logging.info("Plotting sales effects due to state holidays...")
+        # Mapping the StateHoliday values to descriptive labels
+        holiday_mapping = {
+            '0': 'No Holiday',
+            'a': 'Public Holiday',
+            'b': 'Easter Holiday',
+            'c': 'Christmas Holiday'
+        }
+        
+        # Apply the mapping to the StateHoliday column
+        df['StateHoliday'] = df['StateHoliday'].map(holiday_mapping)
+
+        # Group data by StateHoliday and calculate the mean sales for each category
+        sales_by_holiday = df.groupby('StateHoliday')['Sales'].mean().reset_index()
+        
+        # Create a bar plot to visualize the sales by holiday type
+        plt.figure(figsize=(8, 6))
+        sns.barplot(x='StateHoliday', y='Sales', data=sales_by_holiday)
+        plt.title('Average Sales During State Holidays')
+        plt.xlabel('Holiday Type')
+        plt.ylabel('Average Sales')
+        plt.xticks(rotation=45)  # Rotate labels for better readability
+        plt.show()
+     # Function to analyze and plot the effect of state holidays on sales
+    def plot_sales_by_state_holiday(self, df):
+        """
+        Plots the effect of state holidays on sales, with labeled holiday categories.
+        - df: DataFrame containing sales and StateHoliday columns.
+        Returns:
+        None
+        """
+        logging.info("Plotting sales effects due to state holidays...")
+        # Mapping the StateHoliday values to descriptive labels
+        holiday_mapping = {
+            '0': 'No Holiday',
+            'a': 'Public Holiday',
+            'b': 'Easter Holiday',
+            'c': 'Christmas Holiday'
+        }
+        
+        # Apply the mapping to the StateHoliday column
+        df['StateHoliday'] = df['StateHoliday'].map(holiday_mapping)
+
+        # Group data by StateHoliday and calculate the mean sales for each category
+        sales_by_holiday = df.groupby('StateHoliday')['Sales'].mean().reset_index()
+        
+        # Create a bar plot to visualize the sales by holiday type
+        plt.figure(figsize=(8, 6))
+        sns.barplot(x='StateHoliday', y='Sales', data=sales_by_holiday)
+        plt.title('Average Sales During State Holidays')
+        plt.xlabel('Holiday Type')
+        plt.ylabel('Average Sales')
+        plt.xticks(rotation=45)  # Rotate labels for better readability
+        plt.show()
