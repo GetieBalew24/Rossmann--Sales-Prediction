@@ -376,3 +376,39 @@ class CustomerBehaviorAnalyzer:
 
         # Show the plot
         plt.show()
+    def get_top_performing_stores(self, df, top_n=4):
+        """
+        Identify top-performing stores based on total sales.
+        
+        Parameters:
+        - df: Pandas DataFrame containing 'Store' and 'Sales' columns.
+        - top_n: Number of top stores to return. Default is 10.
+        
+        Returns:
+        - top_stores_df: DataFrame of top-performing stores.
+        """
+        logging.info("Identifying top-performing stores...")
+        # Aggregate sales by store
+        store_sales = df.groupby('StoreType')['Sales'].sum().reset_index()
+        
+        # Sort stores by sales in descending order and select the top N stores
+        top_stores_df = store_sales.sort_values(by='Sales', ascending=False).head(top_n)
+        
+        return top_stores_df
+    
+    def plot_top_performing_stores(self, top_stores_df):
+        """
+        Plot top-performing stores using a bar chart.
+        
+        Parameters:
+        - top_stores_df: DataFrame of top-performing stores.
+        """
+        logging.info("Plotting top-performing stores...")
+        # Create a bar chart for top performing stores
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x='StoreType', y='Sales', data=top_stores_df, palette='viridis')
+        plt.title('Top Performing Stores Types by Total Sales')
+        plt.xlabel('Store Type')
+        plt.ylabel('Total Sales')
+        plt.xticks(rotation=45)
+        plt.show()
