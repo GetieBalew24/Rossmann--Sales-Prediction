@@ -321,3 +321,21 @@ class CustomerBehaviorAnalyzer:
         sns.scatterplot(x='CompetitionDistance', y='Sales', data=df)
         plt.title('Competitor Distance vs Sales')
         plt.show()
+        
+    # Plotting sales based on assortment type
+    def assortment_sales(self, df):
+        """
+        Creates a boxplot to analyze the effect of assortment type on sales.
+
+        Parameters:
+        - df: Pandas DataFrame with 'Assortment' and 'Sales' columns.
+
+        Returns:
+        None
+        """
+        logging.info("Plotting sales based on assortment type...")
+        # Create a boxplot for assortment and sales 
+        plt.figure(figsize=(12, 6))
+        sns.boxplot(x='Assortment', y='Sales', data=df)
+        plt.title('Sales by Assortment Type')
+        plt.show()
