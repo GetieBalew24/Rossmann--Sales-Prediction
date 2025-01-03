@@ -197,3 +197,20 @@ class CustomerBehaviorAnalyzer:
         sns.scatterplot(x='Sales', y='Customers',hue='Year', data=df, alpha=0.8)
         plt.title('Sales vs. Number of Customers')
         plt.show()
+    # Plotting sales with and without promotions
+    def plot_sales_promo_effect(self, df):
+        """
+        Plots a boxplot to visualize the effect of promotions on sales.
+        Args:
+            df (pandas.DataFrame): The DataFrame containing the data.
+
+        Returns:
+            None
+        """
+        logging.info("Plotting sales effects due to promotions...")
+        # Create a boxplot
+        plt.figure(figsize=(12, 6))
+        sns.boxplot(x='Promo', y='Sales', data=df)
+        plt.title('Sales with and without Promotions')
+        plt.show()
+    
