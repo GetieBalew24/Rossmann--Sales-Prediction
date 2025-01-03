@@ -412,3 +412,34 @@ class CustomerBehaviorAnalyzer:
         plt.ylabel('Total Sales')
         plt.xticks(rotation=45)
         plt.show()
+    def analyze_promo_effectiveness(self, df):
+        """
+        Analyze the effectiveness of promotions by comparing sales with and without promos.
+        Identify which stores benefit the most from promotions.
+        
+        Parameters:
+        - df: DataFrame containing 'Store', 'Promo', 'Sales', and other relevant columns.
+        
+        Returns:
+        - promo_analysis: DataFrame with store-level analysis of promo effectiveness.
+        """
+        # Ensure 'Date' is in datetime format
+        df['Date'] = pd.to_datetime(df['Date'])
+
+        # Now, analyze promo effectiveness at the store level
+        store_sales_by_promo = df.groupby(['StoreType', 'Promo'])['Sales'].mean().unstack().fillna(0)
+
+        # Calculate sales uplift during promotions (Promo = 1 vs Promo = 0)
+        store_sales_by_promo['SalesUplift'] = store_sales_by_promo[1] - store_sales_by_promo[0]
+
+        # Sort stores by the most sales uplift during promotions
+        promo_analysis = store_sales_by_promo.sort_values(by='SalesUplift', ascending=False).reset_index()
+
+        # Plot top 10 stores with the highest sales uplift during promos
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x='SalesUplift', y='StoreType', data=promo_analysis.head(10), palette='coolwarm')
+        plt.title('Stores Types with Highest Sales Uplift During Promotions')
+        plt.xlabel('Sales Uplift')
+        plt.ylabel('Store')
+        plt.xticks(rotation=45, ha='right')
+        plt.show()
