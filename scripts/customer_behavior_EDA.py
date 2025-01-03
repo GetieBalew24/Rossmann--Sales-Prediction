@@ -173,3 +173,27 @@ class CustomerBehaviorAnalyzer:
         sns.histplot(data=df['IsHoliday'])
         plt.title('Sales on Holidays and non-Holidays')
         plt.show()
+    # Correlation analysis and scatter plot
+    def correlation_sales_customers(self, df):
+        """
+        Calculates the correlation between the number of customers and sales,
+        and creates a scatter plot to visualize the relationship.
+
+        Args:
+            df (pandas.DataFrame): The DataFrame containing the data.
+
+        Returns:
+            None
+        """
+        logging.info("Calculating correlation between sales and customers...")
+        # Extract year from the 'Date' column
+        df["Year"]=pd.DatetimeIndex(df['Date']).year
+        # Calculate the correlation
+        correlation = df['Sales'].corr(df['Customers'])
+        print(f'Correlation between Sales and Customers: {correlation}')
+
+        # Create a scatter plot
+        plt.figure(figsize=(12, 6))
+        sns.scatterplot(x='Sales', y='Customers',hue='Year', data=df, alpha=0.8)
+        plt.title('Sales vs. Number of Customers')
+        plt.show()
