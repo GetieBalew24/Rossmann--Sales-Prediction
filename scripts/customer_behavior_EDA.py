@@ -321,7 +321,7 @@ class CustomerBehaviorAnalyzer:
         sns.scatterplot(x='CompetitionDistance', y='Sales', data=df)
         plt.title('Competitor Distance vs Sales')
         plt.show()
-        
+
     # Plotting sales based on assortment type
     def assortment_sales(self, df):
         """
@@ -338,4 +338,41 @@ class CustomerBehaviorAnalyzer:
         plt.figure(figsize=(12, 6))
         sns.boxplot(x='Assortment', y='Sales', data=df)
         plt.title('Sales by Assortment Type')
+        plt.show()
+    # a function to plot sales before and after competitor entry
+    def plot_sales_vs_competitor(self, df):
+        """
+        Plots the sales before and after a competitor enters the store.
+
+        Parameters:
+        - df: Pandas DataFrame with 'Date', 'Sales', and 'CompetitionDistance' columns.
+
+        Returns:
+        None
+        """
+        logging.info("Plotting sales before and after competitor entry...")
+        plt.figure(figsize=(12, 6))
+
+        # Convert 'Date' to datetime for proper time series plotting
+        df['Date'] = pd.to_datetime(df['Date'])
+
+        # Plot the sales as a time series
+        sns.lineplot(x='Date', y='Sales', data=df, label='Store Sales', marker='o')
+
+        # Mark the point when a competitor enters (CompetitorDistance changes from NA to a number)
+        competitor_entry_date = df.loc[df['CompetitionDistance'].notna(), 'Date'].min()
+        
+        if pd.notna(competitor_entry_date):
+            plt.axvline(competitor_entry_date, color='red', linestyle='--', label='Competitor Entry')
+
+        # Add labels and title
+        plt.title('Impact of New Competitors on Store Sales')
+        plt.xlabel('Date')
+        plt.ylabel('Sales')
+        plt.legend()
+        plt.grid(True)
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+
+        # Show the plot
         plt.show()
