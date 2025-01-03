@@ -304,4 +304,20 @@ class CustomerBehaviorAnalyzer:
 
         # Show plot
         plt.show()
-    
+    # Scatter plot to check distance vs sales relationship
+    def competitor_distance_sales(self, df):
+        """
+        Creates a scatter plot to analyze the relationship between competitor distance and sales.
+
+        Parameters:
+        - df: Pandas DataFrame with 'CompetitionDistance' and 'Sales' columns.
+
+        Returns:
+        None
+        """
+        logging.info("Plotting competitor distance vs sales...")
+        # Create a scatter plot
+        plt.figure(figsize=(12, 6))
+        sns.scatterplot(x='CompetitionDistance', y='Sales', data=df)
+        plt.title('Competitor Distance vs Sales')
+        plt.show()
