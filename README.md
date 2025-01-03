@@ -43,7 +43,35 @@ Predicting sales for Rossmann stores using Random Forest Regressor and LSTM. Ste
 - `notebooks/`: Jupyter Notebooks for EDA, modeling, and evaluation.
 - `scripts/`: Python scripts for data preprocessing, feature engineering, and model training.
 - `tests/`: Unittest scripts for testing a python module
+## Project Structure
 
+```
+├── .vscode/
+│   └── settings.json
+├── .github/
+│   └── workflows
+│       ├── unittests.yml
+├── .gitignore
+├── requirements.txt
+├── README.md
+├── src/
+│   ├── __init__.py
+├── notebooks/
+│   ├── __init__.py
+│   ├──customer_purchasing_behavior_EDA.ipynb
+│   ├──data_preprocessing_pipeline.ipynb
+│   └── README.md
+├── tests/
+│   ├── __init__.py
+├── data/
+│   ├── store.csv
+│   ├── test.csv and train.csv
+└── scripts/
+    ├── __init__.py
+    └── customer_behavior_EDA.py
+    |__ Data_preprocessing_pipeline.py
+    |__ README.md
+```
 ## Data Preprocessing
 
 1. **Loading Data**: Load store, train, and test datasets.
