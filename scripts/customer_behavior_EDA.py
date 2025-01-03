@@ -275,3 +275,33 @@ class CustomerBehaviorAnalyzer:
         plt.ylabel('Average Sales')
         plt.xticks(rotation=45)  # Rotate labels for better readability
         plt.show()
+    
+    # Scatter plot to check distance vs sales relationship
+    def customer_opening_behavior(self, df):
+        """
+        Plots the customer traffic based on whether the store is open or closed.
+
+        Parameters:
+        - df: Pandas DataFrame with 'Open' and 'Customers' columns.
+
+        Returns:
+        None
+        """
+        logging.info("Plotting customer traffic based on store opening status...")
+        # Line plot showing customer visits over time (dates), with a distinction between open and closed times
+        plt.figure(figsize=(12, 6))
+
+        # Plot customer traffic based on store opening (1 for open, 0 for closed)
+        sns.lineplot(x='DayOfWeek', y='Customers', hue='Open', data=df, palette="viridis", style="Open", markers=True, linewidth=2.5)
+
+        # Add labels and title
+        plt.title('Customer Traffic Based on Store Opening and Closing')
+        plt.xlabel('Day of the Week')
+        plt.ylabel('Number of Customers')
+        plt.legend(title='Store Open (1 = Open, 0 = Closed)')
+        plt.grid(True)
+        plt.tight_layout()
+
+        # Show plot
+        plt.show()
+    
