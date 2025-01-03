@@ -159,4 +159,17 @@ class CustomerBehaviorAnalyzer:
         plt.ylabel('Average Sales')
         plt.xlabel('Holiday Period')
         plt.show()
-  
+    # Assuming 'StateHoliday' is a binary feature and 'Sales' is the target
+    def plot_sales_holiday_behavior(self, df):
+        """
+        Plots the average sales before holidays, during holidays, and after holidays.
+
+        Parameters:
+        - df: DataFrame with 'StateHoliday' (binary) and 'Sales' columns
+        """
+        logging.info("Plotting sales effects due to holidays...")
+        # plot sales before, during, and after holidays
+        plt.figure(figsize=(12, 6))
+        sns.histplot(data=df['IsHoliday'])
+        plt.title('Sales on Holidays and non-Holidays')
+        plt.show()
