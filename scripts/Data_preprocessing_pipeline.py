@@ -32,17 +32,9 @@ class DataPreprocessingPipeline:
     def merge_store_data(self):
         """Merge store information with train and test datasets."""
         logging.info("Merging store data with train and test datasets.")
-        
-        # Drop duplicate columns in store_df
-        duplicate_columns = ['CompetitionDistance', 'Assortment', 'StoreType', 'Promo2', 'CompetitionOpenSinceMonth', 'CompetitionOpenSinceYear']
-        self.store_df = self.store_df.drop(columns=duplicate_columns, errors='ignore')
-        
-        # Merge datasets
         self.train_df = pd.merge(self.train_df, self.store_df, how='left', on='Store')
         self.test_df = pd.merge(self.test_df, self.store_df, how='left', on='Store')
-        
         return self.train_df, self.test_df
-
 
     def add_date_features(self, train_df, test_df):
         """Extract date-related features such as weekdays, weekends, and holidays."""
