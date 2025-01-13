@@ -83,3 +83,87 @@ class LSTMModelBuilder:
         X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
         X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
         return X_train, X_test, y_train, y_test
+    def build_lstm_model(self):
+        """
+        Build and compile the LSTM model.
+
+        Returns:
+            tf.keras.Model: Compiled LSTM model ready for training.
+        """
+        model = tf.keras.Sequential()
+
+        # LSTM layers
+        model.add(tf.keras.layers.LSTM(50, activation='relu', return_sequences=True, input_shape=(self.n_lag, 1)))
+        model.add(tf.keras.layers.LSTM(50, activation='relu'))
+
+        # Dense output layer
+        model.add(tf.keras.layers.Dense(1))
+
+        # Compile the model
+        model.compile(optimizer='adam', loss='mse')
+        return model
+
+    def train_model(self, model, X_train, y_train, X_test, y_test, epochs=50, batch_size=32):
+        """
+        Train the LSTM model.
+
+        Parameters:
+            model (tf.keras.Model): The LSTM model to train.
+            X_train (np.ndarray): Training input data.
+            y_train (np.ndarray): Training target data.
+            X_test (np.ndarray): Test input data.
+            y_test (np.ndarray): Test target data.
+            epochs (int, optional): Number of epochs for training. Default is 50.
+            batch_size (int, optional): Size of batches for training. Default is 32.
+
+        Returns:
+            tuple: The trained model and the training history.
+        """
+        history = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(X_test, y_test))
+        return model, history
+
+    def plot_predictions(self, model, X_test, y_test):
+        """
+        Plot the actual vs predicted sales.
+
+        Parameters:
+            model (tf.keras.Model): The trained LSTM model.
+            X_test (np.ndarray): Test input data.
+            y_test (np.ndarray): Actual sales data for the test set.
+
+        Returns:
+            None: This function displays a plot of actual vs predicted sales.
+        """
+        y_pred = model.predict(X_test)
+
+        # Inverse transform to original scale
+        y_pred_inv = self.scaler.inverse_transform(y_pred)
+        y_test_inv = self.scaler.inverse_transform(y_test)
+
+        # Plot the results
+        plt.figure(figsize=(10,6))
+        plt.plot(y_test_inv, label='Actual Sales')
+        plt.plot(y_pred_inv, label='Predicted Sales')
+        plt.title('Actual vs Predicted Sales')
+        plt.legend()
+        plt.show()
+        
+    def plot_loss(self, history):
+        """
+        Plot training and validation loss over epochs.
+
+        Parameters:
+            history (tf.keras.callbacks.History): The training history returned by the model's fit method.
+
+        Returns:
+            None: This function displays a plot of training and validation loss.
+        """
+        plt.figure(figsize=(10, 6))
+        plt.plot(history.history['loss'], label='Training Loss')
+        plt.plot(history.history['val_loss'], label='Validation Loss')
+        plt.title('Training and Validation Loss over Epochs')
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
