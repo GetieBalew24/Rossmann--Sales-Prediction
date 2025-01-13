@@ -64,4 +64,22 @@ class LSTMModelBuilder:
         X_scaled = self.scaler.fit_transform(X)
         y_scaled = self.scaler.fit_transform(y.reshape(-1, 1))
         return X_scaled, y_scaled
-    
+    def split_data(self, X, y, train_size=0.8):
+        """
+        Split the data into train and test sets.
+
+        Parameters:
+            X (ndarray): Input features.
+            y (ndarray): Target variable.
+            train_size (float): Proportion of data to be used for training (default is 0.8).
+        Returns:
+            tuple: X_train, X_test, y_train, y_test split into training and testing sets.
+        """
+        train_size = int(len(X) * train_size)
+        X_train, X_test = X[:train_size], X[train_size:]
+        y_train, y_test = y[:train_size], y[train_size:]
+
+        # Reshape the data to be 3D for LSTM (samples, time steps, features)
+        X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
+        X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
+        return X_train, X_test, y_train, y_test
