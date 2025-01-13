@@ -28,4 +28,40 @@ class LSTMModelBuilder:
             self.df = self.df.dropna()
         else:
             print("The data is stationary.")
-            self.df['Sales_diff'] = self.df['Sales']  # No need for differencing
+            self.df['Sales_diff'] = self.df['Sales']
+    
+    def plot_acf_pacf(self):
+        """
+        Plots the ACF and PACF for the differenced 'Sales' data ('Sales_diff') with 50 lags.
+        """
+        plot_acf(self.df['Sales_diff'], lags=50)
+        plot_pacf(self.df['Sales_diff'], lags=50)
+        plt.show()
+
+    def create_supervised_data(self):
+        """
+        Transforms the differenced 'Sales' data into supervised learning format 
+        by creating input-output pairs based on the specified lag.
+        """
+        X, y = [], []
+        data = self.df['Sales_diff'].values
+        for i in range(len(data) - self.n_lag):
+            X.append(data[i:i + self.n_lag])
+            y.append(data[i + self.n_lag])
+        return np.array(X), np.array(y)
+    
+    def scale_data(self, X, y):
+        """
+        Scales features (X) and target (y) using MinMaxScaler.
+
+        Parameters:
+            X (ndarray): Input features to be scaled.
+            y (ndarray): Target variable to be scaled.
+
+        Returns:
+            tuple: Scaled features (X_scaled) and scaled target (y_scaled).
+        """
+        X_scaled = self.scaler.fit_transform(X)
+        y_scaled = self.scaler.fit_transform(y.reshape(-1, 1))
+        return X_scaled, y_scaled
+    
