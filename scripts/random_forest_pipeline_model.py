@@ -2,6 +2,7 @@ import datetime
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import tensorflow as tf
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
@@ -102,3 +103,15 @@ class ModelBuilder:
         else:
             print("No feature importances available.")
             return None
+    def serialize_model(self):
+        """Serialize the model to a file with a timestamp in the filename."""
+        # Get the current timestamp
+        timestamp = datetime.datetime.now().strftime('%d-%m-%Y-%H-%M-%S')
+        filename = f"random_forest_model-{timestamp}.pkl"
+
+        # Serialize the model
+        with open(f"../model/{filename}", 'wb') as f:
+            pickle.dump(self.model, f)
+        
+        print(f"Model saved as {filename}")
+        return filename
