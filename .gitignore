@@ -1,3 +1,6 @@
 myenv
 data
 *.csv
+*.pkl
+__pycache__
+.pytest_cache
